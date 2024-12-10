@@ -1,0 +1,16 @@
+pandas
+numpy
+plotly
+dash
+pyarrow
+scikit-learn
+scipy
+json
+Flask
+Flask-Compress
+itsdangerous
+Jinja2
+matplotlib
+packaging
+patsy
+pipreqs

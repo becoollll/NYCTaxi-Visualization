@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    margin: 0;
+    background-color: #E8EAE7;
+    font-family: "Work Sans", sans-serif !important;
+    color: #4E5174;
+    font-size: 18px;
+}
+
+img {
+    width: 12%;
+    margin: 2%;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+.header-logo {
+    width: 12%;
+    align-self: center;
+}
+.header-logo:hover{
+    cursor: pointer;
+}
+
+/* Tab styles */
+.tab {
+    font-size: 18px;
+    border: none !important;
+    padding: 10px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    transition: all 0.3s ease !important;
+    color: #28264B;
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+.tab:hover {
+    transform: scale(1.1) !important;
+
+}
+
+.tab-selected {
+    font-weight: bold !important;
+    color: #28264B !important;
+    transform: scale(1.1) !important;
+}
+
+h1, h3 {
+    color: #A40033;
+    font-style: italic;
+}
+
+h2 {
+    color: #4E5174;
+}
+
+/* Table */
+table {
+    max-width: 100%;
+    border-collapse: collapse;
+    margin: auto;
+    justify-content: center;
+}
+
+th {
+    background-color: #959EC9;
+    color: white;
+    font-weight: bold;
+}
+
+th, td {
+    border: 1px solid #959EC9;
+    padding: 8px;
+    text-align: center;
+}
+
+th:first-child, td:first-child {
+    text-align: left;
+}
+
+/* Button */
+button {
+    background-color: #A40033;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: "Work Sans", sans-serif !important;
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    margin: auto;
+    transition: all 0.3s ease !important;
+}
+button:hover {
+    transform: scale(1.1) !important;
+}
+
+/* Hr */
+hr {
+    border: 1px solid #959ec949 !important;
+    margin: 3% 0 !important;
+}
