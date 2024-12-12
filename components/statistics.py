@@ -47,7 +47,6 @@ def layout_setting():
         'improvement_surcharge', 'congestion_surcharge', 'Airport_fee'
     ]
     
-    # descriptive statistics
     stats_df = data[numerical_features].describe()
     
     return html.Div([
@@ -57,10 +56,16 @@ def layout_setting():
             # correlation heatmap
             html.Div([
                 html.H3("Feature Correlations", style={'textAlign': 'center'}),
-                dcc.Graph(
-                    figure=create_correlation_heatmap(data, numerical_features),
-                    style={'textAlign': 'center'}
-                )
+                html.Div([
+                    dcc.Graph(
+                        figure=create_correlation_heatmap(data, numerical_features),
+                    )
+                ], style={
+                    'display': 'flex',
+                    'justifyContent': 'center',
+                    'alignItems': 'center',
+                    'width': '100%'
+                }),
             ]),
             
             html.Hr(),

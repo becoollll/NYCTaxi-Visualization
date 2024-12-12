@@ -26,11 +26,18 @@ def create_box_plot(feature, data, title_prefix=""):
         showlegend=False,
         title_font=dict(family='serif', color='blue', size=24),
         title_x=0.5,
-        title_font_weight='bold'
+        title_font_weight='bold',
+        xaxis=dict(
+            tickfont=dict(family='serif', color='darkred', size=18)
+        ),
+        yaxis=dict(
+            tickfont=dict(family='serif', color='darkred', size=18)
+        )
     )
 
     fig.update_xaxes(title_font=dict(family='serif', color='darkred', size=18)),
-    fig.update_yaxes(title_font=dict(family='serif', color='darkred', size=18))
+    fig.update_yaxes(title_font=dict(family='serif', color='darkred', size=18)),
+
     
     return fig
 
