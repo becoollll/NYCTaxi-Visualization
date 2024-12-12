@@ -25,10 +25,16 @@ def create_correlation_heatmap(data, features):
     ))
     
     fig.update_layout(
-        title='Correlation Heatmap of Numerical Features (Excluding Constant Values)',
+        title='Correlation Heatmap of Numerical Features',
         height=600,
-        width=800
+        width=800,
+        title_font=dict(family='serif', color='blue', size=24),
+        title_x=0.5,
+        title_font_weight='bold'
     )
+
+    fig.update_xaxes(tickfont=dict(family='serif', color='darkred', size=18))
+    fig.update_yaxes(tickfont=dict(family='serif', color='darkred', size=18))
     
     return fig
 

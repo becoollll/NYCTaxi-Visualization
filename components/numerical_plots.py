@@ -108,9 +108,9 @@ def create_time_analysis(data):
             name='Average Trips per Hour',
             marker_color=color_palette1[0],
             hovertemplate="Hour: %{x}:00<br>Avg Trips: %{y:,.0f}<extra></extra>",
-            showlegend=False
+            showlegend=False,
         ),
-        row=1, col=1
+        row=1, col=1,
     )
     
     # weekdays
@@ -135,7 +135,9 @@ def create_time_analysis(data):
             'x': 0.5,
             'xanchor': 'center',
             'yanchor': 'top'
-        }
+        },
+        title_font=dict(family='serif', color='blue', size=24),
+        title_font_weight='bold'
     )
     
     fig.update_xaxes(
@@ -145,17 +147,35 @@ def create_time_analysis(data):
         dtick=1,
         ticktext=[f"{hour}:00" for hour in range(24)],
         tickvals=list(range(24)),
-        row=1, col=1
+        row=1, col=1,
+        title_font=dict(family='serif', color='darkred', size=18)
     )
     
     fig.update_xaxes(
         title_text="Day of Week",
         tickangle=0,
-        row=2, col=1
+        row=2, 
+        col=1,
+        title_font=dict(family='serif', color='darkred', size=18)
     )
     
-    fig.update_yaxes(title_text="Average Number of Trips per Hour", tickformat=",d", row=1, col=1)
-    fig.update_yaxes(title_text="Average Number of Trips per Day", tickformat=",d", row=2, col=1)
+    fig.update_yaxes(
+        title_text="Average Number of Trips per Hour", 
+        tickformat=",d", 
+        row=1, 
+        col=1,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_yaxes(
+        title_text="Average Number of Trips per Day", 
+        tickformat=",d", 
+        row=2, 
+        col=1,
+        title_font=dict(family='serif', color='darkred', size=18),
+    )
+
+    for annotation in fig['layout']['annotations']:
+        annotation['font'] = dict(family='serif', color='blue', size=22)
     
     return fig
 
@@ -215,15 +235,30 @@ def create_fare_analysis(data):
     fig.update_layout(
         height=800,
         showlegend=True,
-        title_text="Fare Components Analysis"
+        title_text="Fare Components Analysis",
+        title_font=dict(family='serif', color='blue', size=24),
+        title_font_weight='bold',
+        title_x=0.5
     )
     
     for i in range(1, 3):
         for j in range(1, 3):
-            fig.update_xaxes(title_text="Trip Distance (miles)", row=i, col=j)
-            fig.update_yaxes(title_text="Amount ($)", row=i, col=j)
+            fig.update_xaxes(
+                title_text="Trip Distance (miles)", 
+                row=i, col=j,
+                title_font=dict(family='serif', color='darkred', size=18)
+            )
+            fig.update_yaxes(
+                title_text="Amount ($)", 
+                row=i, col=j,
+                title_font=dict(family='serif', color='darkred', size=18)
+            )
+
+    for annotation in fig['layout']['annotations']:
+        annotation['font'] = dict(family='serif', color='blue', size=20)
     
     return fig
+
 
 def create_distance_analysis(data):
     fig = make_subplots(
@@ -260,13 +295,37 @@ def create_distance_analysis(data):
         row=1, col=2
     )
     
-    fig.update_layout(height=400, showlegend=False)
-    fig.update_xaxes(title_text="Trip Distance (miles)", row=1, col=1)
-    fig.update_xaxes(title_text="Distance Range", row=1, col=2)
-    fig.update_yaxes(title_text="Number of Trips", row=1, col=1)
-    fig.update_yaxes(title_text="Average Fare ($)", row=1, col=2)
+    fig.update_layout(
+        height=400, 
+        showlegend=False,
+        title_font=dict(family='serif', color='blue', size=24)
+    )
+    fig.update_xaxes(
+        title_text="Trip Distance (miles)", 
+        row=1, col=1,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_xaxes(
+        title_text="Distance Range", 
+        row=1, col=2,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_yaxes(
+        title_text="Number of Trips", 
+        row=1, col=1,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_yaxes(
+        title_text="Average Fare ($)", 
+        row=1, col=2,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    
+    for annotation in fig['layout']['annotations']:
+        annotation['font'] = dict(family='serif', color='blue', size=20)
     
     return fig
+
 
 def create_passenger_analysis(data):
     fig = make_subplots(
@@ -303,14 +362,37 @@ def create_passenger_analysis(data):
         row=1, col=2
     )
     
-    fig.update_layout(height=400, showlegend=False)
-    fig.update_xaxes(title_text="Number of Passengers", row=1, col=1)
-    fig.update_xaxes(title_text="Number of Passengers", row=1, col=2)
-    fig.update_yaxes(title_text="Number of Trips", row=1, col=1)
-    fig.update_yaxes(title_text="Average Fare ($)", row=1, col=2)
+    fig.update_layout(
+        height=400, 
+        showlegend=False,
+        title_font=dict(family='serif', color='blue', size=24)
+    )
+    fig.update_xaxes(
+        title_text="Number of Passengers", 
+        row=1, col=1,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_xaxes(
+        title_text="Number of Passengers", 
+        row=1, col=2,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_yaxes(
+        title_text="Number of Trips", 
+        row=1, col=1,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_yaxes(
+        title_text="Average Fare ($)", 
+        row=1, col=2,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    
+    # 更新子圖標題字型
+    for annotation in fig['layout']['annotations']:
+        annotation['font'] = dict(family='serif', color='blue', size=20)
     
     return fig
-
 def layout_setting():
     data = get_data('final')
     

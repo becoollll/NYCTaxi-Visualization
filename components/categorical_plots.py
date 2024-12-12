@@ -51,7 +51,7 @@ def create_pickup_location_map(data):
         opacity=0.7,
         labels={'count': 'Pickup Count'},
         title='Taxi Pickup Locations',
-        hover_data={'location_id': True, 'zone': True, 'count': True}
+        hover_data={'location_id': True, 'zone': True, 'count': True},
     )
     
     # hover info
@@ -65,9 +65,17 @@ def create_pickup_location_map(data):
 
     fig.update_layout(
         height=600,
-        margin={"r": 0, "t": 30, "l": 0, "b": 0},
-        title_x=0.5
+        margin={"r": 0, "t": 50, "l": 0, "b": 0},
+        title_x=0.5,
+        title_font=dict(family='serif', color='blue', size=24),
+        title_font_weight='bold'
     )
+
+    fig.update_coloraxes(
+        colorbar_title_font=dict(family='serif', color='darkred', size=18),
+        colorbar_tickfont=dict(family='serif', color='darkred', size=18)
+    )
+    
     
     return fig
 
@@ -105,7 +113,7 @@ def create_dropoff_location_map(data):
         opacity=0.7,
         labels={'count': 'Dropoff Count'},
         title='Taxi Dropoff Locations',
-        hover_data={'location_id': True, 'zone': True, 'count': True}
+        hover_data={'location_id': True, 'zone': True, 'count': True},
     )
     
     fig.update_traces(
@@ -118,9 +126,17 @@ def create_dropoff_location_map(data):
 
     fig.update_layout(
         height=600,
-        margin={"r": 0, "t": 30, "l": 0, "b": 0},
-        title_x=0.5
+        margin={"r": 0, "t": 50, "l": 0, "b": 0},
+        title_x=0.5,
+        title_font=dict(family='serif', color='blue', size=24),
+        title_font_weight='bold'
     )
+
+    fig.update_coloraxes(
+        colorbar_title_font=dict(family='serif', color='darkred', size=18),
+        colorbar_tickfont=dict(family='serif', color='darkred', size=18)
+    )
+    
     
     return fig
 
@@ -223,10 +239,28 @@ def create_payment_analysis(data):
     fig.update_layout(
         height=500,
         showlegend=False,
-        title_text="Payment Methods Analysis"
+        title_text="Payment Methods Analysis",
+        title_font=dict(family='serif', color='blue', size=24),
+        title_font_weight='bold',
+        title_x=0.5
+    )
+    
+    for annotation in fig['layout']['annotations']:
+        annotation['font'] = dict(family='serif', color='blue', size=20)
+    
+    fig.update_xaxes(
+        title_text="Payment Method",
+        title_font=dict(family='serif', color='darkred', size=18),
+        row=1, col=2
+    )
+    fig.update_yaxes(
+        title_text="Count",
+        title_font=dict(family='serif', color='darkred', size=18),
+        row=1, col=2
     )
     
     return fig
+
 
 def create_rate_code_analysis(data):
     rate_map = {
@@ -280,12 +314,40 @@ def create_rate_code_analysis(data):
     fig.update_layout(
         height=500,
         showlegend=False,
-        title_text="Rate Code Analysis"
+        title_text="Rate Code Analysis",
+        title_font=dict(family='serif', color='blue', size=24),
+        title_font_weight='bold',
+        title_x=0.5
     )
     
-    fig.update_xaxes(tickangle=45) # rotate x labels
+    for annotation in fig['layout']['annotations']:
+        annotation['font'] = dict(family='serif', color='blue', size=20)
+
+    fig.update_xaxes(
+        title_text="Rate Type",
+        title_font=dict(family='serif', color='darkred', size=18),
+        tickangle=45,
+        row=1, col=1
+    )
+    fig.update_xaxes(
+        title_text="Rate Type",
+        title_font=dict(family='serif', color='darkred', size=18),
+        tickangle=45,
+        row=1, col=2
+    )
+    fig.update_yaxes(
+        title_text="Average Fare ($)",
+        title_font=dict(family='serif', color='darkred', size=18),
+        row=1, col=1
+    )
+    fig.update_yaxes(
+        title_text="Average Distance (miles)",
+        title_font=dict(family='serif', color='darkred', size=18),
+        row=1, col=2
+    )
     
     return fig
+
 
 def create_vendor_analysis(data):
     data['hour'] = pd.to_datetime(data['tpep_pickup_datetime']).dt.hour
@@ -318,14 +380,20 @@ def create_vendor_analysis(data):
         xaxis_title="Hour of Day",
         yaxis_title="Number of Trips",
         height=500,
-        showlegend=True
+        showlegend=True,
+        title_font=dict(family='serif', color='blue', size=24),
+        title_font_weight='bold',
+        title_x=0.5
     )
     
-    # show all hours for x labels
     fig.update_xaxes(
         ticktext=list(range(24)),
         tickvals=list(range(24)),
-        tickmode="array"
+        tickmode="array",
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_yaxes(
+        title_font=dict(family='serif', color='darkred', size=18)
     )
     
     return fig
@@ -395,9 +463,10 @@ def update_category_analysis(analysis_type):
     if analysis_type == 'geo':
         return html.Div([
             html.P(explanations['geo'], className='analysis-explanation'),
-            html.H3("Pickup Locations", style={'textAlign': 'center'}),
+            html.Br(),
             dcc.Graph(figure=create_pickup_location_map(data)),
-            html.H3("Dropoff Locations", style={'textAlign': 'center'}),
+            html.Br(),
+            html.Br(),
             dcc.Graph(figure=create_dropoff_location_map(data)),
             html.Hr(),
             html.H3("Location Statistics", style={'textAlign': 'center'}),

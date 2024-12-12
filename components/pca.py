@@ -5,6 +5,7 @@ from plotly.subplots import make_subplots
 import numpy as np
 from data_manager import get_data, get_analysis_results
 
+
 def create_variance_plot(pca_summary):
     # explained variance ratios
     explained_variance = pca_summary['explained_variance_ratio']
@@ -38,12 +39,24 @@ def create_variance_plot(pca_summary):
         title="PCA Explained Variance Ratio",
         xaxis_title="Principal Component",
         showlegend=True,
-        height=500
+        height=500,
+        title_font=dict(family='serif', color='blue', size=24),
+        title_x=0.5,
+        title_font_weight='bold'
     )
     
     # y-axis
-    fig.update_yaxes(title_text="Individual Explained Variance (%)", secondary_y=False)
-    fig.update_yaxes(title_text="Cumulative Explained Variance (%)", secondary_y=True)
+    fig.update_yaxes(
+        title_text="Individual Explained Variance (%)", 
+        secondary_y=False,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_yaxes(
+        title_text="Cumulative Explained Variance (%)", 
+        secondary_y=True,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_xaxes(title_font=dict(family='serif', color='darkred', size=18))
     
     return fig
 
@@ -75,8 +88,15 @@ def create_component_loadings_plot(final_df):
         xaxis_title="First Principal Component",
         yaxis_title="Second Principal Component",
         height=600,
-        showlegend=False
+        showlegend=False,
+        title_font=dict(family='serif', color='blue', size=24),
+        title_x=0.5,
+        title_font_weight='bold'
     )
+
+    fig.update_xaxes(title_font=dict(family='serif', color='darkred', size=18))
+    fig.update_yaxes(title_font=dict(family='serif', color='darkred', size=18))
+    
     
     return fig
 

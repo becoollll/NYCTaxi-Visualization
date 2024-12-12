@@ -76,9 +76,28 @@ def create_transformation_plots(data, feature):
     fig.update_layout(
         height=800,
         title_text=f"Distribution Comparison for {feature} After Different Transformations",
-        showlegend=False
+        showlegend=False,
+        title_x=0.5,
+        title_font=dict(family='serif', color='blue', size=24),
+        title_font_weight='bold'
     )
     
+    for annotation in fig.layout.annotations:
+        annotation.update(font=dict(family='serif', color='blue', size=22))
+
+    for i in range(1, 3):
+        for j in range(1, 3):
+            fig.update_xaxes(
+                title_text="Value",
+                title_font=dict(family='serif', color='darkred', size=18),
+                row=i, col=j
+            )
+            fig.update_yaxes(
+                title_text="Count",
+        title_font=dict(family='serif', color='darkred', size=18),
+                row=i, col=j
+            )
+
     return fig
 
 def create_transformation_summary(data, feature):

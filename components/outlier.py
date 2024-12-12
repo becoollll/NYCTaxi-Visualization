@@ -23,8 +23,14 @@ def create_box_plot(feature, data, title_prefix=""):
         yaxis_title="Value",
         height=500,
         margin=dict(t=50, b=50, l=50, r=50),
-        showlegend=False
+        showlegend=False,
+        title_font=dict(family='serif', color='blue', size=24),
+        title_x=0.5,
+        title_font_weight='bold'
     )
+
+    fig.update_xaxes(title_font=dict(family='serif', color='darkred', size=18)),
+    fig.update_yaxes(title_font=dict(family='serif', color='darkred', size=18))
     
     return fig
 

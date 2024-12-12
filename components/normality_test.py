@@ -54,7 +54,8 @@ def create_analysis_plots(data, feature, title_prefix=""):
                 color='rgb(71, 160, 169)',
                 size=5,
                 opacity=0.6
-            )
+            ),
+            showlegend=False
         ),
         row=1, col=1
     )
@@ -72,7 +73,8 @@ def create_analysis_plots(data, feature, title_prefix=""):
             line=dict(
                 color='rgb(255, 127, 14)',
                 width=2
-            )
+            ),
+            showlegend=False
         ),
         row=1, col=1
     )
@@ -84,7 +86,8 @@ def create_analysis_plots(data, feature, title_prefix=""):
             name='Data Distribution',
             nbinsx=50,
             opacity=0.7,
-            marker_color='rgb(71, 160, 169)'
+            marker_color='rgb(71, 160, 169)',
+            showlegend=False
         ),
         row=1, col=2
     )
@@ -107,7 +110,8 @@ def create_analysis_plots(data, feature, title_prefix=""):
             line=dict(
                 color='rgb(255, 127, 14)',
                 width=2
-            )
+            ),
+            showlegend=False
         ),
         row=1, col=2
     )
@@ -117,12 +121,34 @@ def create_analysis_plots(data, feature, title_prefix=""):
         showlegend=True,
         title_text=f"{title_prefix}Analysis for {feature}",
         title_x=0.5,
+        title_font=dict(family='serif', color='blue', size=24),
+        title_font_weight='bold'
     )
     
-    fig.update_xaxes(title_text="Theoretical Quantiles", row=1, col=1)
-    fig.update_xaxes(title_text=feature, row=1, col=2)
-    fig.update_yaxes(title_text="Sample Quantiles", row=1, col=1)
-    fig.update_yaxes(title_text="Frequency", row=1, col=2)
+    for annotation in fig.layout.annotations:
+        annotation.update(font=dict(family='serif', color='blue', size=22))
+
+    fig.update_xaxes(
+        title_text="Theoretical Quantiles", 
+        row=1, col=1,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_xaxes(
+        title_text=feature, 
+        row=1, col=2,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_yaxes(
+        title_text="Sample Quantiles", 
+        row=1, col=1,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+    fig.update_yaxes(
+        title_text="Frequency",
+        row=1, col=2,
+        title_font=dict(family='serif', color='darkred', size=18)
+    )
+
     
     return fig
 
